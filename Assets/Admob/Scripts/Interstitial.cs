@@ -4,7 +4,8 @@ using UnityEngine;
 using GoogleMobileAds.Api;
 public class Interstitial : MonoBehaviour
 {
-    private InterstitialAd interstitial;
+    private InterstitialAd _interstitial;
+    /// AdMob test pub key
     public string interstitialId = "ca-app-pub-3940256099942544/8691691433";
 
 
@@ -14,22 +15,22 @@ public class Interstitial : MonoBehaviour
     }
     private void OnDestroy()
     {
-        interstitial.Destroy();
+        _interstitial.Destroy();
     }
 
     void RequestInterstitial()
     {
-        interstitial = new InterstitialAd(interstitialId);
+        _interstitial = new InterstitialAd(interstitialId);
         AdRequest request = new AdRequest.Builder().Build();
-        interstitial.LoadAd(request);
+        _interstitial.LoadAd(request);
 
     }
 
      void ShowGameOverAd()
     {
-        if(this.interstitial.IsLoaded())
+        if(this._interstitial.IsLoaded())
         {
-            this.interstitial.Show();
+            this._interstitial.Show();
         }
 
         

@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
   [SerializeField] private float _gravity = -9.81f;
   [SerializeField] private float _touchSpeedModifier = 0.1f;
     private Touch _touch;
-    float velocity;
+    private float _velocity;
     private bool _isGrounded = true;
     private float _horizontalInput;
     private Animator _animator;
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
     void PlayerMovement()
     {
 
-        // Включаем анимацию бега и двигаем персонажа все время прямо
+        /// Move player straigth forward and play run animation
 
         _animator.SetBool("isRun", true);
         transform.Translate(Vector3.forward * _playerSpeed * Time.deltaTime);
@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector3.right * _playerSideSpeed * _horizontalInput *
                                                    Time.deltaTime, Space.World);
 
+        /// Touch control with finger
         if(Input.touchCount > 0)
         {
             
@@ -77,16 +78,15 @@ public class PlayerController : MonoBehaviour
     }
 
 
-
     void Jump()
     {
-        velocity += _gravity * Time.deltaTime;
+        _velocity += _gravity * Time.deltaTime;
 
         if (Input.GetKey(KeyCode.Space))
         {
             if (_isGrounded)
             {
-                velocity = _jumpForce;
+                _velocity = _jumpForce;
                 _isGrounded = false;
                 _animator.SetTrigger("Jump");
                 _animator.SetBool("isSlide", false);
@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
         {
             if (_isGrounded)
             {
-                velocity = _jumpForce;
+                _velocity = _jumpForce;
                 _isGrounded = false;
                 _animator.SetTrigger("Jump");
                 _animator.SetBool("isSlide", false);
@@ -105,8 +105,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // Проверяем на земле персонаж или нет, и фиксируем его позицию по оси y;
-        // Не даем персонажу провалиться вниз
+        /// Check for ground and prevent player for fall through floor
         if (transform.position.y < 0)
         {
             _isGrounded = true;
@@ -116,7 +115,7 @@ public class PlayerController : MonoBehaviour
 
         if (!_isGrounded)
         {
-            transform.Translate(new Vector3(0, velocity, 0) * Time.deltaTime);
+            transform.Translate(new Vector3(0, _velocity, 0) * Time.deltaTime);
 
         }
        
@@ -146,7 +145,7 @@ public class PlayerController : MonoBehaviour
 
     void Bounds()
     {
-        // Не даем персонажу выйти за пределы обозначеных границ                  
+        
         if (this.transform.position.x > LevelBounds.xBoundRight)
         {
             transform.position = new Vector3(LevelBounds.xBoundRight,
@@ -169,12 +168,12 @@ public class PlayerController : MonoBehaviour
             GameManager.Instance.CurrentState = GameManager.GameState.Playing;
         }
     }
-    // Вызываю из animation event
+    /// Call method from animation event
     void StartSlide()
     {
         _playerCollider.size /= 3f; // уменьшаю коллайдер для прохождения под препятствием
     }
-    // Вызываю из animation event
+    /// Call method from animation event
     void EndSlide()
     {
         _playerCollider.size = new Vector3(_colScaleX, _colScaleY, _colScaleZ);
@@ -206,6 +205,6 @@ public class PlayerController : MonoBehaviour
     }
 
 
-
+    
 
 }
