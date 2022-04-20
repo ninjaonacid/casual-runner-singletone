@@ -1776,7 +1776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c0746b4f46fbe4eb5d6a8def475da3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interstitialId: ca-app-pub-3940256099942544/8691691433
+  interstitialId: ca-app-pub-4507868374279731/2197036930
 --- !u!114 &911077950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1887,7 +1887,6 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
-  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1974,20 +1973,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 543450652264369475}
   camPosition: {x: 0, y: 4, z: -5}
---- !u!114 &963194230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 747e4affebfbdea469a20e1c7dfdce92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  a: 10
-  b: 25
 --- !u!4 &1025415328 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6140183210591677671, guid: c747199aaccaa1d4f828bc71a5a2af8d, type: 3}
