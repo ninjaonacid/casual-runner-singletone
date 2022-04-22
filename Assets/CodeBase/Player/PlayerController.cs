@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     private bool _isGrounded = true;
     private float _horizontalInput;
     private Animator _animator;
+
+    [Header("Collider for resize")]
     private BoxCollider _playerCollider;
     private float _colScaleX = 1;
     private float _colScaleY = 1.65f;
@@ -52,7 +54,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void PlayerMovement()
+    private void PlayerMovement()
     {
 
         /// Move player straigth forward and play run animation
@@ -78,7 +80,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void Jump()
+    private void Jump()
     {
         _velocity += _gravity * Time.deltaTime;
 
@@ -86,10 +88,7 @@ public class PlayerController : MonoBehaviour
         {
             if (_isGrounded)
             {
-                _velocity = _jumpForce;
-                _isGrounded = false;
-                _animator.SetTrigger("Jump");
-                _animator.SetBool("isSlide", false);
+                JumpLogic();
 
             }
         }
@@ -97,10 +96,7 @@ public class PlayerController : MonoBehaviour
         {
             if (_isGrounded)
             {
-                _velocity = _jumpForce;
-                _isGrounded = false;
-                _animator.SetTrigger("Jump");
-                _animator.SetBool("isSlide", false);
+                JumpLogic();
 
             }
         }
@@ -123,7 +119,15 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void Slide()
+    private void JumpLogic()
+    {
+        _velocity = _jumpForce;
+        _isGrounded = false;
+        _animator.SetTrigger("Jump");
+        _animator.SetBool("isSlide", false);
+    }
+
+    private void Slide()
     {
 
         if (Input.GetKeyDown(KeyCode.S))
@@ -143,7 +147,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void Bounds()
+    private void Bounds()
     {
         
         if (this.transform.position.x > LevelBounds.xBoundRight)
@@ -161,7 +165,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void TouchStart()
+    private void TouchStart()
     {
         if(Input.touchCount > 0 || Input.GetKeyDown(KeyCode.W))
         {
@@ -169,12 +173,12 @@ public class PlayerController : MonoBehaviour
         }
     }
     /// Call method from animation event
-    void StartSlide()
+    private void StartSlide()
     {
-        _playerCollider.size /= 3f; // уменьшаю коллайдер для прохождения под препятствием
+        _playerCollider.size /= 3f; // Half collider for slide
     }
     /// Call method from animation event
-    void EndSlide()
+    private void EndSlide()
     {
         _playerCollider.size = new Vector3(_colScaleX, _colScaleY, _colScaleZ);
         _animator.SetBool("isSlide", false);
@@ -183,12 +187,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Obstacle"))
-        {
-            GameManager.Instance.CurrentState = GameManager.GameState.Dead;
-            this.gameObject.SetActive(false); 
-        }
-
+        
         switch (other.gameObject.tag)
         {
             case "Pickup":
@@ -200,6 +199,11 @@ public class PlayerController : MonoBehaviour
             case "Finish":
                 GameManager.Instance.CurrentState = GameManager.GameState.Finish;
                 _animator.SetBool("isRun", false);
+                break;
+
+            case "Obstacle":
+                GameManager.Instance.CurrentState = GameManager.GameState.Dead;
+                this.gameObject.SetActive(false);
                 break;
         }
     }
