@@ -6,7 +6,7 @@ public class LevelBounds
 {
     public static float xBoundRight = 3;
     public static float xBoundLeft = -3;
-
+    public static float yBoundBottom = 0;
 
 
    

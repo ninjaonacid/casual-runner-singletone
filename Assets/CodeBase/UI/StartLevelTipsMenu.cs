@@ -1,6 +1,8 @@
+using Assets.CodeBase.Infrastructure.Singletons;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 public class StartLevelTipsMenu : MonoBehaviour
 {
