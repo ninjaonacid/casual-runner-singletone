@@ -2,9 +2,9 @@
 using Assets.CodeBase.Infrastructure.Singletons;
 using UnityEngine;
 
-public class Game : MonoBehaviour
+public class Game 
 {
-    public static  IInputService InputService;
+    public static  InputService InputService;
 
 
     public Game()
@@ -13,7 +13,7 @@ public class Game : MonoBehaviour
         GameManager.Instance.CurrentState = GameManager.GameState.StartGame;
     }
 
-    public static IInputService RegisterInputService()
+    public static InputService RegisterInputService()
     {
         if (Application.isEditor)
         {
@@ -21,7 +21,7 @@ public class Game : MonoBehaviour
         }
         else
         {
-            return new MobileInputService(new SwipeManager());
+            return new MobileInputService();
         }
         
     }

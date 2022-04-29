@@ -50,13 +50,7 @@ namespace Assets.CodeBase.Infrastructure.Singletons
         }
 
 
-       
-
-
-        void StartLevel()
-        {
-            StartLevelTips?.Invoke();
-        }
+ 
         void GameOver()
         {
             ShowGameOverMenu?.Invoke();

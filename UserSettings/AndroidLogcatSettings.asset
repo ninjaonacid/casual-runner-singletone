@@ -2,8 +2,8 @@
     "m_SelectedDeviceId": "RF8R60C4VGY",
     "m_SelectedPackage": {
         "deviceId": "RF8R60C4VGY",
-        "name": "com.OneManGames.LittleEvilHellRun",
-        "processId": 19209,
+        "name": "com.unity3d.mobileremote",
+        "processId": 22051,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -12,7 +12,7 @@
             "deviceId": "RF8R60C4VGY",
             "name": "com.android.settings",
             "processId": 19172,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "RF8R60C4VGY",
@@ -24,6 +24,12 @@
             "deviceId": "RF8R60C4VGY",
             "name": "com.OneManGames.LittleEvilHellRun",
             "processId": 19209,
+            "exited": true
+        },
+        {
+            "deviceId": "RF8R60C4VGY",
+            "name": "com.unity3d.mobileremote",
+            "processId": 22051,
             "exited": false
         }
     ],

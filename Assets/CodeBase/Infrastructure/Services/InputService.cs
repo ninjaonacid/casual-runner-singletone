@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.CodeBase.Infrastructure.Services
 {
-    public abstract class InputService : IInputService
+    public abstract class InputService
     {
 
         public abstract bool JumpButtonPressed();
@@ -18,13 +18,5 @@ namespace Assets.CodeBase.Infrastructure.Services
         
     }
 
-    public interface IInputService
-    {
-        void Move(Transform transform, float speedModifier);
-        bool JumpButtonPressed();
-        bool SlideButtonPressed();
-        bool StartButtonPressed();
- 
-
-    }
+    
 }

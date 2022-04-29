@@ -6,20 +6,17 @@ namespace Assets.CodeBase.Infrastructure.Services
 {
     public class MobileInputService : InputService
     {
-        private readonly SwipeManager _swipeManager;
-        private Touch _touch;
-        public MobileInputService(SwipeManager swipeManager)
-        {
-            _swipeManager = swipeManager;
-        }
-        public override bool JumpButtonPressed() =>
-                            _swipeManager.SwipeUp;
         
+        private Touch _touch;
+
+        public override bool JumpButtonPressed() =>
+                            SwipeControls.Instance.SwipeUp;
+
         public override bool SlideButtonPressed() =>
-                            _swipeManager.SwipeDown;
+                            SwipeControls.Instance.SwipeDown;
 
         public override bool StartButtonPressed() =>
-            Input.touchCount > 0;
+                            Input.touchCount > 0;
         
             
         

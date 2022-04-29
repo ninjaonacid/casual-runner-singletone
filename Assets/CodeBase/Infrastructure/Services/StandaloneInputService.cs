@@ -6,6 +6,11 @@ public class StandaloneInputService : InputService
     public override bool JumpButtonPressed() =>
                         Input.GetKeyDown(KeyCode.Space);
 
+    public override bool SlideButtonPressed() =>
+        Input.GetKeyDown(KeyCode.S);
+
+    public override bool StartButtonPressed() =>
+        Input.GetKeyDown(KeyCode.W);
         
     
 
@@ -17,11 +22,6 @@ public class StandaloneInputService : InputService
 
     }
 
-    public override bool SlideButtonPressed() =>
-        Input.GetKeyDown(KeyCode.S);
-
-    public override bool StartButtonPressed() =>
-        Input.GetKeyDown(KeyCode.W);
     
     
 }

@@ -12,11 +12,11 @@ namespace Assets.CodeBase.Player
         [SerializeField] private float _playerSpeed = 1;
         [SerializeField] private float _jumpForce = 5;
         [SerializeField] private float _gravity = -9.81f;
-        [SerializeField] private float _touchSpeedModifier = 0.1f;
+        [SerializeField] private float _touchSpeedModifier = 0.3f;
         private float _velocity;
         private bool _isGrounded = true;
 
-        private IInputService _input;
+        private InputService _input;
         private Animator _animator;
 
         [Header("Collider for resize")]
@@ -126,6 +126,7 @@ namespace Assets.CodeBase.Player
             if (_input.StartButtonPressed())
             {
                 GameManager.Instance.CurrentState = GameManager.GameState.Playing;
+ 
             }
         }
 

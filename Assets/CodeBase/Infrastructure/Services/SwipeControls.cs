@@ -4,18 +4,35 @@ using UnityEngine;
 
 namespace Assets.CodeBase.Infrastructure.Services
 {
-    public class SwipeManager : MonoBehaviour
+    public class SwipeControls : MonoBehaviour
     {
+        public static SwipeControls Instance;
+
 
         private bool tap, swipeUp, swipeDown;
         private bool isDraging = false;
         private Vector2 startTouch, swipeDelta;
-
+        
         public Vector2 SwipeDelta { get { return swipeDelta; } }
 
         public bool Tap { get { return tap; } }
         public bool SwipeUp { get { return swipeUp; } }
         public bool SwipeDown { get { return swipeDown; } }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        static void Initialize()
+        {
+            Instance = new GameObject("SwipeControls").AddComponent<SwipeControls>();
+            DontDestroyOnLoad(Instance.gameObject);
+        }
+
+        private void Start()
+        {
+            if(this != Instance)
+            {
+                Destroy(this);
+            }
+        }
 
         private void Reset()
         {
@@ -64,11 +81,13 @@ namespace Assets.CodeBase.Infrastructure.Services
             {
                 float x = swipeDelta.x;
                 float y = swipeDelta.y;
-                if (Mathf.Abs(x) > Mathf.Abs(y))
+                if (Mathf.Abs(x) < Mathf.Abs(y))
 
                 {
                     if (y < 0)
+                    {
                         swipeDown = true;
+                    }
                     else
                         swipeUp = true;
                 }
