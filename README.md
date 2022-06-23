@@ -1,4 +1,4 @@
 # CasualRunnerSingletone
-Casual Runner Singletone + InputService
+Casual Runner Singletone
 
 ![gameImage](Assets/Art/Screenshots/EvilRunner.png)
